@@ -1,16 +1,15 @@
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  font: 112.5%/1.45em georgia, serif, sans-serif;
+  font: 112.5%/1.45em monospace, sans-serif;
   box-sizing: border-box;
-  overflow-y: scroll;
 }
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: georgia, serif;
+  font-family: monospace, sans-serif;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -53,6 +52,7 @@ template {
 a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
+  cursor: pointer;
 }
 a:active,
 a:hover {
@@ -81,8 +81,7 @@ h1 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: monospace;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 2.25rem;
@@ -260,8 +259,7 @@ h2 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: monospace;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.62671rem;
@@ -277,8 +275,7 @@ h3 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: monospace;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.38316rem;
@@ -294,8 +291,7 @@ h4 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: monospace;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1rem;
@@ -311,8 +307,7 @@ h5 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: monospace;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.85028rem;
@@ -328,8 +323,7 @@ h6 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: monospace;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.78405rem;
@@ -594,4 +588,147 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.box .row {
+}
+
+.box .row.header {
+  flex: 0 1 auto;
+  /* The above is shorthand for:
+  flex-grow: 0,
+  flex-shrink: 1,
+  flex-basis: auto
+  */
+}
+
+.box .row.content {
+  flex: 1 1 auto;
+}
+
+.box .row.footer {
+  flex: 0 1 40px;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+}
+
+.item {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.item + .item {
+  margin-left: 16px;
+}
+
+textarea[type="text"] {
+  font-size: 16px;
+  font-family: monospace;
+  border-color: #d5d7dd;
+  height: 100%;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grow {
+  transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.grow:hover {
+  transform: scale(1.05);
+}
+.grow:active {
+  transform: scale(0.98);
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  height: 100vh;
+  overflow: hidden;
+}
+
+header {
+  padding: 24px 16px;
+  text-align: left;
+  background: #232526; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #414345,
+    #232526
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #414345,
+    #232526
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: #ffffff;
+  flex: 0 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+section {
+  margin-top: 1.5rem;
+  margin-bottom: 6rem;
+}
+.section-header {
+  margin-top: 1.5em;
+  margin-bottom: 1rem;
+}
+
+.content {
+  height: 100%;
+  width: 100%;
+  max-width: 1280px;
+  padding: 60px 30px 30px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  flex: 75%;
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+/* Main column */
+main {
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row;
+  flex: 1 1 auto;
+  height: 100%;
+}
+
+/* Footer */
+footer {
+  margin-top: 48px;
+  padding: 24px 16px 0px 16px;
+  text-align: center;
+  flex: 0 0 auto;
+  border-top: #e3e4e8 solid 1px;
+  color: #808080;
+  font-size: 14px;
+}
+
+.navbar {
+  display: flex;
+  background-color: #333;
 }
