@@ -11,22 +11,52 @@ class IndexPage extends React.Component {
     super(props)
 
     this.state = {
-      inputText: "Paste your paper here (Example 2021).",
+      inputText: "Paste paper here (Example 2021).",
       outputText: "",
+      outputItems: [],
+      copyButtonText: "Copy Text",
     }
 
     this.extractReferences = this.extractReferences.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleOutputChange = this.handleOutputChange.bind(this)
+    this.triggerCopyButtonChange = this.triggerCopyButtonChange.bind(this)
   }
 
   render() {
     return (
       <Layout>
-        <Seo title="Home" />
+        <Seo title="" />
         <div className="box">
-          {/* <div className="row header">
-              <p><b>Hi honey</b></p>                   
-            </div> */}
+          <div
+            className="row"
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              marginBottom: "16px",
+            }}
+          >
+            <a
+              onClick={() => {
+                this.triggerCopyButtonChange()
+                copyText(this.state.outputText)
+              }}
+              className="nice-button item"
+            >
+              {this.state.copyButtonText}
+            </a>
+            <a
+              onClick={() =>
+                exportOutputToCSV(
+                  this.state.outputItems,
+                  `references ${new Date().toISOString()}.csv`
+                )
+              }
+              className="nice-button item"
+            >
+              📄 Download CSV
+            </a>
+          </div>
           <div className="row" style={{ height: "100%" }}>
             <div className="container">
               <textarea
@@ -41,9 +71,9 @@ class IndexPage extends React.Component {
                 <a
                   onClick={() => this.extractReferences()}
                   style={{ fontSize: "2em" }}
-                  className=" grow"
+                  className="nice-button grow"
                 >
-                  {"➡️"}
+                  {"➜"}
                 </a>
               </div>
               <textarea
@@ -51,6 +81,7 @@ class IndexPage extends React.Component {
                 id="output"
                 name="output"
                 className="item"
+                onChange={this.handleOutputChange}
                 value={this.state.outputText}
               />
             </div>
@@ -60,9 +91,27 @@ class IndexPage extends React.Component {
     )
   }
 
+  triggerCopyButtonChange(event) {
+    this.setState({
+      copyButtonText: "Copied!",
+    })
+
+    setTimeout(() => {
+      this.setState({
+        copyButtonText: "Copy Text",
+      })
+    }, 1000)
+  }
+
   handleInputChange(event) {
     this.setState({
       inputText: event.target.value,
+    })
+  }
+
+  handleOutputChange(event) {
+    this.setState({
+      outputText: event.target.value,
     })
   }
 
@@ -77,7 +126,8 @@ class IndexPage extends React.Component {
     trimmed.forEach(x => (result += x + "\n"))
 
     this.setState({
-      outputText: result,
+      outputItems: trimmed,
+      outputText: result.trimRight(),
     })
   }
 
@@ -91,3 +141,46 @@ class IndexPage extends React.Component {
 }
 
 export default IndexPage
+
+function copyText(text) {
+  navigator.clipboard.writeText(text)
+}
+
+function exportOutputToCSV(array, filename) {
+  var csv = []
+  // var rows = document.querySelectorAll("table tr")
+  // for (var i = 0; i < rows.length; i++) {
+  //   var row = [],
+  //     cols = rows[i].querySelectorAll("td, th")
+  //   for (var j = 0; j < cols.length; j++) {
+  //     row.push(cols[j].innerText)
+  //   }
+  //   csv.push(row.join(","))
+  // }
+  // result = csv.join("\n")
+
+  // download csv file
+  downloadCSV(array.join(","), filename)
+}
+
+function downloadCSV(csv, filename) {
+  var csvFile
+  var downloadLink
+
+  if (
+    window.Blob == undefined ||
+    window.URL == undefined ||
+    window.URL.createObjectURL === undefined
+  ) {
+    alert("Your browser doesn't support Blobs")
+    return
+  }
+
+  csvFile = new Blob([csv], { type: "text/csv" })
+  downloadLink = document.createElement("a")
+  downloadLink.download = filename
+  downloadLink.href = window.URL.createObjectURL(csvFile)
+  downloadLink.style.display = "none"
+  document.body.appendChild(downloadLink)
+  downloadLink.click()
+}

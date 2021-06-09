@@ -8,9 +8,11 @@ const Header = ({ siteTitle }) => (
       style={{
         margin: `0 auto`,
         maxWidth: 1280,
+        padding: "0 16px",
+        display: "flex",
       }}
     >
-      <h4 style={{ margin: 0 }}>
+      <h4 style={{ margin: 0, flex: "1" }}>
         <Link
           to="/"
           style={{
@@ -21,6 +23,17 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h4>
+      <p style={{ margin: 0, fontSize: "x-small" }}>
+        <Link
+          to="https://github.com/david-mccullough/references-helper"
+          style={{
+            color: "#ffffff60",
+            textDecoration: `none`,
+          }}
+        >
+          made by David McCullough
+        </Link>
+      </p>
     </div>
   </header>
 )

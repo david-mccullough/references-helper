@@ -596,9 +596,6 @@ pre tt:after {
   height: 100%;
 }
 
-.box .row {
-}
-
 .box .row.header {
   flex: 0 1 auto;
   /* The above is shorthand for:
@@ -621,9 +618,8 @@ pre tt:after {
   height: 100%;
 }
 
-.item {
+.container .item {
   flex-grow: 1;
-  height: 100%;
 }
 
 .item + .item {
@@ -633,23 +629,14 @@ pre tt:after {
 textarea[type="text"] {
   font-size: 16px;
   font-family: monospace;
-  border-color: #d5d7dd;
+  border-color: #bdc0c7;
+  border-radius: 4px;
   height: 100%;
 }
 .flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.grow {
-  transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-.grow:hover {
-  transform: scale(1.05);
-}
-.grow:active {
-  transform: scale(0.98);
 }
 
 .layout {
@@ -661,7 +648,7 @@ textarea[type="text"] {
 }
 
 header {
-  padding: 24px 16px;
+  padding: 24px 0;
   text-align: left;
   background: #232526; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -671,9 +658,10 @@ header {
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to right,
-    #414345,
-    #232526
+    #16213f,
+    #171831
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   color: #ffffff;
   flex: 0 0 auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.2);
@@ -693,7 +681,7 @@ section {
   height: 100%;
   width: 100%;
   max-width: 1280px;
-  padding: 60px 30px 30px;
+  padding: 24px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -724,11 +712,35 @@ footer {
   text-align: center;
   flex: 0 0 auto;
   border-top: #e3e4e8 solid 1px;
-  color: #808080;
+  color: #888c96;
   font-size: 14px;
 }
 
-.navbar {
-  display: flex;
-  background-color: #333;
+.nice-button {
+  border: 1px solid #888c96;
+  border-radius: 4px;
+  padding: 8px 16px;
+  color: #064aff;
+  font-size: medium;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nice-button:hover {
+  background-color: #064aff11;
+  border-color: #064aff;
+}
+
+.nice-button:active {
+  background-color: #064aff;
+  color: #fff;
+}
+
+.grow {
+  transition: transform 0.15s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.grow:hover {
+  transform: scale(1.05);
+}
+.grow:active {
+  transform: scale(1);
 }

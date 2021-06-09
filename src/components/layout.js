@@ -32,8 +32,8 @@ const Layout = ({ children }) => {
             {children}
             <div style={{ flex: "1" }} />
             <footer>
-              <b>{new Date().getFullYear()} </b>
-              0BSD Licesne
+              0BSD License
+              <b> ({new Date().getFullYear()})</b>
             </footer>
           </div>
         </div>
