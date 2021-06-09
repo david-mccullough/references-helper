@@ -160,7 +160,7 @@ function exportOutputToCSV(array, filename) {
   // result = csv.join("\n")
 
   // download csv file
-  downloadCSV(array.join(","), filename)
+  downloadCSV(array.join("\n"), filename)
 }
 
 function downloadCSV(csv, filename) {
